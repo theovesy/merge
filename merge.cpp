@@ -26,7 +26,7 @@ vector<string> merge(string word1, string word2) {
 
 	vector<string> possible_merge;
 
-	for (int i = word1.length()-2; i > 0; i--) {
+	for (int i = word1.length()-1; i >= 0; i--) {
 		const char a = word1[i];
 		for (int j = 0; j <= word2.length()-2; j++) {
 			if (a == word2[j]){
@@ -36,7 +36,7 @@ vector<string> merge(string word1, string word2) {
 	}
 
 	// reverse order
-	for (int i = word2.length()-2; i > 0; i--) {
+	for (int i = word2.length()-1; i >= 0; i--) {
 		const char a = word2[i];
 		for (int j = 0; j <= word1.length()-2; j++) {
 			if (a == word1[j]){
@@ -49,15 +49,16 @@ vector<string> merge(string word1, string word2) {
 }
 
 // returns vector of the longest strings from a vector of strings
-vector<string> longest_strings(vector<string>& vect) {
+vector<string> longest_strings(vector<string> vect) {
 	vector<string> output;
 	string longest = vect[0];
 	for (const string& str : vect) {
 		if (str.length() > longest.length())
 			longest = str;
 	}
+	int max_len = longest.length();
 	for (const string& str : vect) {
-		if (str.length() == longest.length())
+		if (str.length() == max_len)
 			output.push_back(str);
 	}
 	return output;
@@ -65,7 +66,7 @@ vector<string> longest_strings(vector<string>& vect) {
 
 // prints the content of a vector of strings
 void print_vect(vector<string> vect) {
-	for (const string& str : vect)
+	for (const string str : vect)
 		cout << str << "\n";
 }
 
